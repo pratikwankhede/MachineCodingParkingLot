@@ -6,22 +6,24 @@ import dto.Ticket;
 import dto.Vehicle;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ParkingLot
 {
     String pid;
     int noOfFloors;
-    ArrayList<ParkingFloor> floors;
-    ArrayList<Ticket> tickets;
+    List<ParkingFloor> floors;
+    List<Ticket> tickets;
 
     public ParkingLot(String id, int n)
     {
         pid=id;
         noOfFloors=n;
-        floors = new ArrayList<>();
+        floors = (List<ParkingFloor>) Collections.synchronizedList(new ArrayList<ParkingFloor>());
 
         for(int i=0;i<n;i++)floors.add(new ParkingFloor(i,2,2,2));
-        tickets = new ArrayList<>();
+        tickets = (List<Ticket>) Collections.synchronizedList(new ArrayList<Ticket>());
     }
 
     public void showFreeSlots(VehicleType vt)
